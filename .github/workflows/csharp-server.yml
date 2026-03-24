@@ -1,0 +1,84 @@
+name: Build SPT .NET Server
+
+on:
+  push:
+    branches:
+      - 'master'
+    paths:
+      - 'build_server_csharp.ps1'
+      - '.github/workflows/csharp-server.yml'
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  job1:
+    name: Build SPTarkov.Server
+    strategy:
+      fail-fast: false
+      matrix:
+        b: 
+          [
+            {
+              branch: "main",
+              dotnet: 9
+            }
+          ]
+        r: 
+          [
+            {
+              plat: "win",
+              zflag: "-NoZip",
+              zip: false
+            },
+            {
+              plat: "linux",
+              zflag: "",
+              zip: true
+            }
+          ]
+        arch: ["x64"]
+        dbg: ["-Release"]
+        sf: [""]
+    
+    runs-on: "ubuntu-latest"
+    
+    steps:
+      - name: Set Timezone
+        uses: szenius/set-timezone@v2.0
+        with:
+          timezoneLinux: "Asia/Shanghai"
+          timezoneMacos: "Asia/Shanghai"
+          timezoneWindows: "China Standard Time"
+          
+      - uses: actions/checkout@v4
+ 
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{matrix.b.dotnet}}
+
+      - name: Build SPTarkov.Server
+        id: build
+        shell: pwsh
+        env:
+          TZ: Asia/Shanghai
+        run: ./build_server_csharp.ps1 -Overwrite -Branch ${{matrix.b.branch}} ${{matrix.dbg}} ${{matrix.sf}} -Runtime ${{matrix.r.plat}}-${{matrix.arch}} ${{matrix.r.zflag}}
+
+      - uses: actions/upload-artifact@v4
+        if: ${{! matrix.r.zip}}
+        with:
+          name: ${{ steps.build.outputs.ZIP_NAME }}
+          path: './server-csharp/Build/*'
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 3
+          compression-level: 9      
+
+      - uses: actions/upload-artifact@v4
+        if: ${{matrix.r.zip}}
+        with:
+          name: ${{ steps.build.outputs.ZIP_NAME }}
+          path: './server-csharp/${{ steps.build.outputs.ZIP_NAME }}'
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 3
+          compression-level: 0
