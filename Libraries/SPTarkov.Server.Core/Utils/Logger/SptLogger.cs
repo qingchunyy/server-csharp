@@ -69,7 +69,7 @@ public class SptLogger<T> : ISptLogger<T>
         _loggerQueueManager.EnqueueMessage(
             new SptLogMessage(
                 _category,
-                DateTime.UtcNow,
+                DateTime.Now,
                 LogLevel.Info,
                 Environment.CurrentManagedThreadId,
                 Thread.CurrentThread.Name,
@@ -86,7 +86,7 @@ public class SptLogger<T> : ISptLogger<T>
         _loggerQueueManager.EnqueueMessage(
             new SptLogMessage(
                 _category,
-                DateTime.UtcNow,
+                DateTime.Now,
                 LogLevel.Info,
                 Environment.CurrentManagedThreadId,
                 Thread.CurrentThread.Name,
@@ -102,7 +102,7 @@ public class SptLogger<T> : ISptLogger<T>
         _loggerQueueManager.EnqueueMessage(
             new SptLogMessage(
                 _category,
-                DateTime.UtcNow,
+                DateTime.Now,
                 LogLevel.Error,
                 Environment.CurrentManagedThreadId,
                 Thread.CurrentThread.Name,
@@ -118,7 +118,7 @@ public class SptLogger<T> : ISptLogger<T>
         _loggerQueueManager.EnqueueMessage(
             new SptLogMessage(
                 _category,
-                DateTime.UtcNow,
+                DateTime.Now,
                 LogLevel.Warn,
                 Environment.CurrentManagedThreadId,
                 Thread.CurrentThread.Name,
@@ -134,7 +134,7 @@ public class SptLogger<T> : ISptLogger<T>
         _loggerQueueManager.EnqueueMessage(
             new SptLogMessage(
                 _category,
-                DateTime.UtcNow,
+                DateTime.Now,
                 LogLevel.Info,
                 Environment.CurrentManagedThreadId,
                 Thread.CurrentThread.Name,
@@ -149,7 +149,7 @@ public class SptLogger<T> : ISptLogger<T>
         _loggerQueueManager.EnqueueMessage(
             new SptLogMessage(
                 _category,
-                DateTime.UtcNow,
+                DateTime.Now,
                 LogLevel.Debug,
                 Environment.CurrentManagedThreadId,
                 Thread.CurrentThread.Name,
@@ -165,7 +165,7 @@ public class SptLogger<T> : ISptLogger<T>
         _loggerQueueManager.EnqueueMessage(
             new SptLogMessage(
                 _category,
-                DateTime.UtcNow,
+                DateTime.Now,
                 LogLevel.Fatal,
                 Environment.CurrentManagedThreadId,
                 Thread.CurrentThread.Name,
@@ -188,7 +188,7 @@ public class SptLogger<T> : ISptLogger<T>
         _loggerQueueManager.EnqueueMessage(
             new SptLogMessage(
                 _category,
-                DateTime.UtcNow,
+                DateTime.Now,
                 level,
                 Environment.CurrentManagedThreadId,
                 Thread.CurrentThread.Name,
