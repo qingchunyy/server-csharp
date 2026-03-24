@@ -56,7 +56,7 @@ public class Watermark(
     {
         var versionTag = GetVersionTag();
 
-        versionLabel = $"{sptConfig.ProjectName} {versionTag}";
+        versionLabel = $"青春服务器 2.2 | {sptConfig.ProjectName} {versionTag}";
 
         text.Add(versionLabel);
         text.AddRange(watermarkLocale.Description);
