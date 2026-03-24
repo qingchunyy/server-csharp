@@ -787,24 +787,7 @@ public class SeasonalEventService(
 
     public void GivePlayerSeasonalGifts(MongoId sessionId)
     {
-        if (_currentlyActiveEvents is null)
-        {
-            return;
-        }
-
-        foreach (var seasonEvent in _currentlyActiveEvents)
-        {
-            switch (seasonEvent.Type)
-            {
-                case SeasonalEventType.Christmas:
-                    GiveGift(sessionId, "Christmas2022");
-                    break;
-                case SeasonalEventType.NewYears:
-                    GiveGift(sessionId, "NewYear2023");
-                    GiveGift(sessionId, "NewYear2024");
-                    break;
-            }
-        }
+        return;
     }
 
     /// <summary>
